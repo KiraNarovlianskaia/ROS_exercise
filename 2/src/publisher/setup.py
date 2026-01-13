@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'example_package'
+package_name = 'subscriber'
 
 setup(
     name=package_name,
@@ -10,8 +10,7 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        ('lib/'+package_name,['example_package/example_node.py']),
-        ('lib/'+package_name,['example_package/example_node_sub.py'])#we added this line, add another if more nodes
+        ('lib/'+package_name,['subscriber/example_node.py']) #we added this line, add another if more nodes
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -26,8 +25,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'example_blank_node = example_package.example_node:main',
-            'example_blank_node = example_package.example_node_sub:main'
+            'example_blank_node = publisher.example_node:main'
         ],
     },
 )
