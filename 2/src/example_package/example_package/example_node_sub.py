@@ -8,9 +8,8 @@ class SimpleNode(Node):
     def __init__(self):
         super().__init__('simple_node')
 
-        self.sub = self.create_subscription(String, 'chatter', self.callback_function, 10)  # create subscriber
+        self.sub = self.create_subscription(String, 'kiranaro', self.callback_function, 10)  # create subscriber
 
-        self.publish()
 
     def callback_function(self, msg):  # receive massage
         self.get_logger().info('I heard: "%s"' % msg.data)  # parce it
