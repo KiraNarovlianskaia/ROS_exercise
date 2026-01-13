@@ -1,27 +1,28 @@
 #!/usr/bin/python3
-import os
 import rclpy
+from std_msgs.msg import String
 from rclpy.node import Node
 
-# Fill in something for msg type imports
-# from duckietown_msgs.msg import SOMETHING
-# from std_msgs.msg import SOMETHING
 
-class ListenerNode(Node):
+class SimpleNode(Node):
     def __init__(self):
-        super().__init__('listener_node')
-        #Create publishers and subscribers in init, use callback
-        pass
-    
-    #Define callback functions here
+        super().__init__('simple_node')
+
+        self.sub = self.create_subscription(String, 'kiranaro', self.callback_function, 10)  # create subscriber
+
+
+    def callback_function(self, msg):  # receive massage
+        self.get_logger().info('I heard: "%s"' % msg.data)  # parce it
 
 
 def main():
-    print('In main')
     rclpy.init()
-    node = ListenerNode()
-    rclpy.spin(node)
-    rclpy.shutdown()
+    node = SimpleNode()
+    try:
+        rclpy.spin(node)
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
 
 
 if __name__ == '__main__':
