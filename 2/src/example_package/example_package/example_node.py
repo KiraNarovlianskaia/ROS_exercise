@@ -15,7 +15,7 @@ class SkeletonNode(Node):
         #Create publishers and subscribers in init, use callback
         self.pub = self.create_publisher(String, 'kiranaro', 10)
         self.counter = 0
-        self.timer = self.create_timer(1.0, self.timer_callback)
+        self.timer = self.create_timer(1.0, self.publish_msg)
 
     def publish_msg(self):
         msg = String()
